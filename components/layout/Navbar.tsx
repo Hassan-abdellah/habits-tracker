@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="flex items-center justify-between mx-10 my-6">
-      <Link href="/">Home</Link>
-      <nav>
+    <header className="w-screen my-6">
+      <nav className="container flex items-center justify-between">
+        <Link href="/">Home</Link>
         <ul className="flex items-center gap-2">
           <Show when="signed-out">
             <li>

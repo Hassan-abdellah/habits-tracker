@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Geist } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/layout/Navbar";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toast";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
 });
 
@@ -23,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn("h-full", figtree.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider
@@ -34,8 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           signUpForceRedirectUrl="/"
         >
           <Navbar />
-          <main>{children}</main>
+          <main className="container">{children}</main>
         </ClerkProvider>
+
+        <Toaster />
       </body>
     </html>
   );
