@@ -1,8 +1,9 @@
 import { Habit } from "@/db/schema";
 import { listActiveHabit } from "@/lib/actions/habits.actions";
 import { auth } from "@clerk/nextjs/server";
+import HabitsList from "./HabitsList";
 
-const HabitsList = async () => {
+const HabitsSection = async () => {
   await auth.protect();
 
   const habitsList: Habit[] = await listActiveHabit();
@@ -14,15 +15,7 @@ const HabitsList = async () => {
       </div>
     );
   }
-  return (
-    <div className="space-y-3">
-      {habitsList.map((habit) => (
-        <div key={habit.id}>
-          <h2>{habit.name}</h2>
-        </div>
-      ))}
-    </div>
-  );
+  return <HabitsList habits={habitsList} />;
 };
 
-export default HabitsList;
+export default HabitsSection;

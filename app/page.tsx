@@ -1,5 +1,6 @@
-import CreateHabitModal from "@/components/CreateHabitModal";
-import HabitsList from "@/components/HabitsList";
+import CreateHabitModal from "@/components/habits/CreateHabitModal";
+import HabitsLoader from "@/components/habits/HabitsLoader";
+import HabitsSection from "@/components/habits/HabitsSection";
 import { Suspense } from "react";
 
 const HomePage = () => {
@@ -11,14 +12,8 @@ const HomePage = () => {
       </div>
 
       {/* List */}
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center text-center text-xl">
-            <h2>Loading...</h2>
-          </div>
-        }
-      >
-        <HabitsList />
+      <Suspense fallback={<HabitsLoader />}>
+        <HabitsSection />
       </Suspense>
     </section>
   );
