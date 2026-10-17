@@ -12,22 +12,32 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { hanldeInserHabit } from "@/lib/actions/habits.actions";
+import { updateHabitName } from "@/lib/actions/habits.actions";
 import { useAuth } from "@clerk/nextjs";
-import { PlusCircle } from "lucide-react";
+import { PencilIcon } from "lucide-react";
 import { useState } from "react";
 import * as z from "zod";
-import { toast } from "./ui/toast";
+import { toast } from "@/components/ui/toast";
+import { Spinner } from "../ui/spinner";
 
 const schema = z.object({
-  name: z.string().min(8, "Name must be at least 8 characters"),
+  name: z
+    .string()
+    .min(8, "Name must be at least 8 characters")
+    .max(100, "Name Must be at least 100 Characters"),
 });
 type FormData = z.infer<typeof schema>;
 type Errors = Partial<Record<keyof FormData, string>>;
 
-const CreateHabitModal = () => {
+const UpdateHabitModal = ({
+  habitName,
+  habitId,
+}: {
+  habitName: string;
+  habitId: string;
+}) => {
   const { userId } = useAuth();
-  const [values, setValues] = useState<FormData>({ name: "" });
+  const [values, setValues] = useState<FormData>({ name: habitName });
   const [errors, setErrors] = useState<Errors>({});
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -35,7 +45,7 @@ const CreateHabitModal = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleCreateHabit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleUpdateHabit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const result = schema.safeParse(values);
@@ -54,16 +64,12 @@ const CreateHabitModal = () => {
     setErrors({});
     setIsSaving(true);
     try {
-      await hanldeInserHabit({
-        userId: userId,
-        name: result.data.name,
-      });
+      await updateHabitName(habitId, result.data.name);
       setIsOpen(false);
-      setValues({ name: "" });
       toast.add({
         type: "success",
         title: "Success",
-        description: "New Habit Added Successfully",
+        description: "New Habit Updated Successfully",
       });
     } catch (error) {
       console.log("error", error);
@@ -73,20 +79,19 @@ const CreateHabitModal = () => {
   };
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <form onSubmit={handleCreateHabit} id="habit-form">
+      <form onSubmit={handleUpdateHabit} id="habit-form-update">
         <DialogTrigger
           render={
-            <Button className="bg-toffee-brown hover:bg-espresso cursor-pointer px-6 py-4.5 rounded-3xl space-x-1">
-              <PlusCircle />
-              <span>New</span>
+            <Button className="bg-transparent hover:bg-espresso cursor-pointer border-0 px-1.5 m-0">
+              <PencilIcon />
             </Button>
           }
         />
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Create Habit</DialogTitle>
+            <DialogTitle>Update Habit</DialogTitle>
             <DialogDescription className="text-golden-chestnut">
-              Create a Habit by inserting its name
+              Update a Habit Name
             </DialogDescription>
           </DialogHeader>
 
@@ -119,12 +124,12 @@ const CreateHabitModal = () => {
               }
             />
             <Button
-              form="habit-form"
+              form="habit-form-update"
               type="submit"
               disabled={isSaving}
               className="cursor-pointer bg-toffee-brown text-linen hover:bg-espresso hover:text-linen py-4.5 rounded-2xl"
             >
-              Save
+              {isSaving ? <Spinner /> : <span>Save</span>}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -133,4 +138,4 @@ const CreateHabitModal = () => {
   );
 };
 
-export default CreateHabitModal;
+export default UpdateHabitModal;
