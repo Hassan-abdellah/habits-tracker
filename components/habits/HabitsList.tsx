@@ -5,7 +5,7 @@ import ArchiveHabitModal from "@/components/habits/ArchiveHabitModal";
 import UpdateHabitModal from "./UpdateHabitModal";
 import { useOptimistic, useTransition } from "react";
 import { insertCheckin } from "@/lib/actions/checkins.actions";
-import { clsx } from "cn";
+import { Progress, ProgressLabel } from "@/components/ui/progress";
 
 interface HabitItem extends Habit {
   checkedToday: boolean;
@@ -30,32 +30,53 @@ const HabitsList = ({ habits }: { habits: HabitItem[] }) => {
       await insertCheckin(habitId);
     });
   };
+
+  // the habits checked today
+  const done = optimisticHabits.filter((h) => h.checkedToday).length;
+  const total = optimisticHabits.length;
+
   return (
-    <div className="space-y-3 mt-8">
-      {optimisticHabits.map((habit) => (
-        <div
-          key={habit.id}
-          className="bg-desert-sand rounded-full py-2 px-4 text-linen flex justify-between items-center"
-        >
-          {/* Left Side */}
-          <div className="max-w-2/3 flex items-center gap-2">
-            <Checkbox
-              disabled={isPending}
-              checked={habit.checkedToday}
-              onCheckedChange={() => handleToggleCheckbox(habit.id)}
-              className="border-linen cursor-pointer border-2 data-checked:bg-espresso data-checked:border-espresso data-checked:text-linen"
-            />
-            <h2 className="text-lg capitalize">{habit.name}</h2>
-          </div>
+    <div className="mt-8 space-y-10">
+      {/* Progress Bar */}
 
-          {/* Right side (actions) */}
+      <Progress
+        value={(done / total) * 100}
+        className="w-full max-w-full justify-end rounded-full *:data-[slot=progress-track]:h-2
+        **:data-[slot=progress-indicator]:bg-espresso
+        "
+      >
+        <ProgressLabel className="text-golden-chestnut">
+          {done} / {total} done
+        </ProgressLabel>
+      </Progress>
 
-          <div className="flex items-center gap-1.5">
-            <ArchiveHabitModal habitId={habit.id} />
-            <UpdateHabitModal habitId={habit.id} habitName={habit.name} />
+      {/* List */}
+      <div className="space-y-3">
+        {optimisticHabits.map((habit) => (
+          <div
+            key={habit.id}
+            className="bg-desert-sand rounded-full py-2 px-4 text-linen flex justify-between items-center"
+          >
+            {/* Left Side */}
+            <div className="max-w-2/3 flex items-center gap-2">
+              <Checkbox
+                disabled={isPending}
+                checked={habit.checkedToday}
+                onCheckedChange={() => handleToggleCheckbox(habit.id)}
+                className="border-linen cursor-pointer border-2 data-checked:bg-espresso data-checked:border-espresso data-checked:text-linen"
+              />
+              <h2 className="text-lg capitalize">{habit.name}</h2>
+            </div>
+
+            {/* Right side (actions) */}
+
+            <div className="flex items-center gap-1.5">
+              <ArchiveHabitModal habitId={habit.id} />
+              <UpdateHabitModal habitId={habit.id} habitName={habit.name} />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

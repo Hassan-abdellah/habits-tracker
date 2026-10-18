@@ -58,7 +58,7 @@ const ArchiveHabitModal = ({ habitId }: { habitId: string }) => {
           </Button>
         }
       />
-      <AlertDialogContent size="sm">
+      <AlertDialogContent size="default">
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
             <Trash2Icon />

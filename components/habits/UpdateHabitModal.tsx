@@ -118,7 +118,7 @@ const UpdateHabitModal = ({
           <DialogFooter>
             <DialogClose
               render={
-                <Button className="cursor-pointer bg-linen text-espresso hover:bg-desert-sand hover:text-espresso py-4.5 rounded-2xl">
+                <Button className="cursor-pointer bg-linen text-espresso hover:bg-desert-sand hover:text-espresso py-4.5 px-6 rounded-2xl">
                   Cancel
                 </Button>
               }
@@ -127,7 +127,7 @@ const UpdateHabitModal = ({
               form="habit-form-update"
               type="submit"
               disabled={isSaving}
-              className="cursor-pointer bg-toffee-brown text-linen hover:bg-espresso hover:text-linen py-4.5 rounded-2xl"
+              className="cursor-pointer bg-toffee-brown text-linen hover:bg-espresso hover:text-linen py-4.5 px-6 rounded-2xl"
             >
               {isSaving ? <Spinner /> : <span>Save</span>}
             </Button>
