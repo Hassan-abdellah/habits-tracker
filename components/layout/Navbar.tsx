@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="w-screen my-6">
+    <header className="w-full my-6">
       <nav className="container flex items-center justify-between">
         <Link href="/">Home</Link>
         <ul className="flex items-center gap-2">

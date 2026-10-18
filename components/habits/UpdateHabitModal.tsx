@@ -83,7 +83,7 @@ const UpdateHabitModal = ({
         <DialogTrigger
           render={
             <Button className="bg-transparent hover:bg-espresso cursor-pointer border-0 px-1.5 m-0">
-              <PencilIcon />
+              <PencilIcon className="md:size-4.5 size-4" />
             </Button>
           }
         />

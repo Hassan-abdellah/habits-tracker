@@ -54,7 +54,7 @@ const ArchiveHabitModal = ({ habitId }: { habitId: string }) => {
             aria-label="Archive Habit"
             className="bg-transparent cursor-pointer rounded-lg px-1.5"
           >
-            <TrashIcon className="size-4.5" />
+            <TrashIcon className="md:size-4.5 size-4" />
           </Button>
         }
       />

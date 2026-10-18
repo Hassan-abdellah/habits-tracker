@@ -134,7 +134,7 @@
 
 @layer utilities {
   .container {
-    @apply max-w-[calc(100%-4rem)] mx-auto;
+    @apply md:max-w-[calc(100%-4rem)] max-w-[calc(100%-1rem)] mx-auto;
   }
 }
 
