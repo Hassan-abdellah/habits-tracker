@@ -33,6 +33,7 @@ export const listActiveHabit = async () => {
   return await db.query.habits.findMany({
     where: and(eq(habits.userId, userId), isNull(habits.archivedAt)),
     orderBy: desc(habits.createdAt),
+    with: { checkIns: true },
   });
 };
 export const archiveHabit = async (habitId: string) => {

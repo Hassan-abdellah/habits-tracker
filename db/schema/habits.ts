@@ -1,5 +1,6 @@
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { users } from "./users";
+import { CheckIn } from "./checkIns";
 
 export const habits = pgTable("habits", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -15,3 +16,4 @@ export const habits = pgTable("habits", {
 
 export type Habit = typeof habits.$inferSelect;
 export type NewHabit = typeof habits.$inferInsert;
+export type HabitWithCheckIns = Habit & { checkIns: CheckIn[] };

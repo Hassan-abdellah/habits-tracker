@@ -1,12 +1,13 @@
-import { Habit } from "@/db/schema";
+import { HabitWithCheckIns } from "@/db/schema";
 import { listActiveHabit } from "@/lib/actions/habits.actions";
 import { auth } from "@clerk/nextjs/server";
 import HabitsList from "./HabitsList";
+import { getToday } from "@/utils";
 
 const HabitsSection = async () => {
   await auth.protect();
 
-  const habitsList: Habit[] = await listActiveHabit();
+  const habitsList: HabitWithCheckIns[] = await listActiveHabit();
 
   if (!habitsList.length) {
     return (
@@ -15,7 +16,12 @@ const HabitsSection = async () => {
       </div>
     );
   }
-  return <HabitsList habits={habitsList} />;
+  const todayDate = getToday();
+  const habits = habitsList.map((h) => ({
+    ...h,
+    checkedToday: h.checkIns.some((checkin) => checkin.date === todayDate),
+  }));
+  return <HabitsList habits={habits} />;
 };
 
 export default HabitsSection;
