@@ -1,11 +1,11 @@
 import { CheckIn } from "@/db/schema";
 import { HabitItem } from "@/types";
-import { genereateDaysListBack } from "@/utils";
+import { generateDaysListBack } from "@/utils";
 import { clsx } from "cn";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const HeatMap = ({ habits }: { habits: HabitItem[] }) => {
-  const days = genereateDaysListBack();
+  const days = generateDaysListBack();
   // check if the habit has checkins for certain day
   const isHabitChecked = (checkins: CheckIn[], day: string) => {
     return checkins.some((checkin) => checkin.date === day);
