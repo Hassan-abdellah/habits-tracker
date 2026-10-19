@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 const HomePage = () => {
   return (
-    <section className="py-20">
+    <section className="py-10">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl">Habits</h1>
         <CreateHabitModal />

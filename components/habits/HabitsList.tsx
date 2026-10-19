@@ -34,12 +34,12 @@ const HabitsList = ({ habits }: { habits: HabitItem[] }) => {
   const total = optimisticHabits.length;
 
   return (
-    <div className="mt-8 space-y-10">
+    <div className="mt-8 space-y-8">
       {/* Progress Bar */}
 
       <Progress
         value={(done / total) * 100}
-        className="w-full max-w-full  rounded-full *:data-[slot=progress-track]:h-2
+        className="w-full max-w-full rounded-full *:data-[slot=progress-track]:h-2
         **:data-[slot=progress-indicator]:bg-espresso
         "
       >
