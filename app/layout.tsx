@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/layout/Navbar";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toast";
+import { Suspense } from "react";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,16 +26,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", figtree.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <ClerkProvider
-          signInUrl="/auth/sign-in"
-          afterSignOutUrl="/auth/sign-in"
-          signUpUrl="/auth/sign-up"
-          signInForceRedirectUrl="/"
-          signUpForceRedirectUrl="/"
-        >
-          <Navbar />
-          <main className="container">{children}</main>
-        </ClerkProvider>
+        <Suspense>
+          <ClerkProvider
+            signInUrl="/auth/sign-in"
+            afterSignOutUrl="/auth/sign-in"
+            signUpUrl="/auth/sign-up"
+            signInForceRedirectUrl="/"
+            signUpForceRedirectUrl="/"
+          >
+            <Navbar />
+            <main className="container">{children}</main>
+          </ClerkProvider>
+        </Suspense>
 
         <Toaster />
       </body>

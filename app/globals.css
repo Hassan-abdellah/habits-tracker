@@ -52,6 +52,8 @@
   --color-espresso: #5e3023ff;
   --color-toffee-brown: #895737ff;
   --color-desert-sand: #dab49dff;
+
+  --nav-height: 50px;
 }
 
 :root {
@@ -87,6 +89,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* clerk overwrite */
+  --clerk-color-background: #ffffff; /* card background */
+  --clerk-color-primary: #5e3023ff; /* buttons, links */
+  --clerk-color-foreground: #0f172a; /* text */
+  --clerk-color-input: #f8fafc; /* input background */
+  --clerk-border-radius: 0.75rem;
 }
 
 .dark {
@@ -135,6 +144,9 @@
 @layer utilities {
   .container {
     @apply md:max-w-[calc(100%-4rem)] max-w-[calc(100%-1rem)] mx-auto;
+  }
+  .page-height {
+    @apply h-[calc(100%-var(--nav-height))];
   }
 }
 

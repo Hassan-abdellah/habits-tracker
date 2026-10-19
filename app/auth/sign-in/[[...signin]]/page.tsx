@@ -2,7 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 
 const SignInPage = () => {
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-center page-height">
       <SignIn
         signUpUrl="/auth/sign-up"
         signInUrl="/auth/sign-in"
