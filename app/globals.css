@@ -96,6 +96,8 @@
   --clerk-color-foreground: #0f172a; /* text */
   --clerk-color-input: #f8fafc; /* input background */
   --clerk-border-radius: 0.75rem;
+
+  --nav-height: 50px;
 }
 
 .dark {
