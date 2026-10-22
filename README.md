@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev for launching the dev server
+npm run test for testing
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Habit Tracker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+_track your habits with our easy-to-use Application_
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Stack Utilized:
 
-## Learn More
+- Next JS for Dynamic UIs
+- Typescript for Type safety
+- Clerk for Authentication
+- Clerk Webhooks to access user public data
+- Shadcn for headless UI components
+- Tailwind CSS for Styling
+- Vitest for Testing
+- Neon for serverless Postgresql
+- Drizzle ORM for quering Postgresql
+- Server Function for contacting the server
 
-To learn more about Next.js, take a look at the following resources:
+##### Screens:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![screen1](https://i.ibb.co/Q3byBCwD/Desktop-Screen.png)
+![screen2](https://i.ibb.co/q3W15xW4/Mobile-screen.png)
+![screen3](https://i.ibb.co/mrrF6bPB/create.png)
+![screen4](https://i.ibb.co/tTGHKBNP/archive.png)
