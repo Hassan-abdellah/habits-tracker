@@ -7,10 +7,10 @@ const Navbar = () => {
   return (
     <header className="w-full h-(--nav-height) pt-2">
       <nav className="container flex items-center justify-between">
-        <Link href="/">
+        <Link href="/" aria-label="Habit Tracker App">
           <Logo />
         </Link>
-        <ul className="flex items-center gap-2">
+        <ul className="flex items-center gap-2.5">
           <Show when="signed-out">
             <li>
               <Link

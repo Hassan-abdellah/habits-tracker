@@ -96,6 +96,8 @@
   --clerk-color-foreground: #0f172a; /* text */
   --clerk-color-input: #f8fafc; /* input background */
   --clerk-border-radius: 0.75rem;
+
+  --nav-height: 50px;
 }
 
 .dark {
@@ -146,11 +148,15 @@
     @apply md:max-w-[calc(100%-4rem)] max-w-[calc(100%-1rem)] mx-auto;
   }
   .page-height {
-    @apply h-[calc(100%-var(--nav-height))];
+    @apply h-[calc(100vh-var(--nav-height))];
   }
 }
 
 .cl-internal-1n0t203,
 .cl-internal-r93pb5 {
   display: none !important;
+}
+
+.cl-avatarBox.cl-internal-biqd9y {
+  background-color: #dab49dff !important;
 }

@@ -1,9 +1,11 @@
 import CreateHabitModal from "@/components/habits/CreateHabitModal";
 import HabitsLoader from "@/components/habits/HabitsLoader";
 import HabitsSection from "@/components/habits/HabitsSection";
+import { auth } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 
-const HomePage = () => {
+const HomePage = async () => {
+  await auth.protect();
   return (
     <section className="py-10 page-height">
       <div className="flex items-center justify-between">
