@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link href="/" aria-label="Habit Tracker App">
           <Logo />
         </Link>
-        <ul className="flex items-center gap-2">
+        <ul className="flex items-center gap-2.5">
           <Show when="signed-out">
             <li>
               <Link
